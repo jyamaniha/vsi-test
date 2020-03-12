@@ -9,6 +9,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Stage Test'
+                sh 'terraform init'
             }
         }
         stage('Deploy') {
