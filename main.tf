@@ -12,6 +12,6 @@ resource "ibm_compute_vm_instance" "vm1" {
   disks                = [100]
   local_disk           = false
 
-  private_subnet = "10.98.8.0/27"
+  private_subnet = "10.153.79.0/26"
   
 }
