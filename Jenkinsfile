@@ -15,6 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Stage Deploy'
+                sh 'terraform apply -auto-approve'
             }
         }
     } 
