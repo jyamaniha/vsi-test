@@ -1,3 +1,7 @@
+provider "ibm" {
+  iaas_classic_username = "${var.iaas_classic_username}"
+  iaas_classic_api_key  = "${var.ibmcloud_iaas_api_key}"
+}
 resource "ibm_compute_vm_instance" "vm1" {
   hostname             = "tfwin1"
   domain               = "tfdemo.com"
@@ -13,5 +17,4 @@ resource "ibm_compute_vm_instance" "vm1" {
   local_disk           = false
 
   private_subnet = "10.153.79.0/26"
-  
 }
