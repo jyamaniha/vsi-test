@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy VM'){
             steps{
                 script{
-                     if("${cliente}"=='UNIQUE'){
+                     if("${cliente}"=='unique'){
                          deployVM("${cliente}")
                      }
                 }
