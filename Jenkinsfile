@@ -1,7 +1,7 @@
 def verify() {
     stage('Check Parameters') {
         def userInput = input(
-            id: 'userInput', message: "Verify Input Parameters:\n cliente: ${cliente}\n hostname:${hostname}\n domain: ${domain}\n cores: ${cores}\n memory: ${memory}\n private_subnet: ${subnet_privada}", parameters: [
+            id: 'userInput', message: "Verify Input Parameters:\n cliente: ${cliente}\n hostname:${vhostname}\n domain: ${domain}\n cores: ${cores}\n memory: ${memory}\n private_subnet: ${subnet_privada}", parameters: [
             [$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Please confirm you sure to proceed']
         ])
         if(!userInput) {
@@ -12,7 +12,7 @@ def verify() {
 def deployVM(){
     stage('Initial Setups VM'){
         withCredentials([usernamePassword(credentialsId: 'ibmcloud-unique', passwordVariable: 'pass', usernameVariable: 'user')]) {
-            sh 'terraform apply -var "iaas_classic_username=${user}" -var "ibmcloud_iaas_api_key=${pass}" -var "hostname=${hostname}" -var "domain=${domain}" -var "cores=${cores}" -var "memory=${memory}" -var "private_subnet=${subnet_privada}" -auto-approve'
+            sh 'terraform apply -var "iaas_classic_username=${user}" -var "ibmcloud_iaas_api_key=${pass}" -var "hostname=${vhostname}" -var "domain=${domain}" -var "cores=${cores}" -var "memory=${memory}" -var "private_subnet=${subnet_privada}" -auto-approve'
         }
     }
 }
@@ -24,7 +24,7 @@ pipeline {
                 script{
                       sh 'echo "*****************************************"'
                       sh 'echo "WARNING Check the input information"'
-                      sh 'echo "Start Deploy ${hostname} on ${cliente}"'
+                      sh 'echo "Start Deploy ${vhostname} on ${cliente}"'
                       sh 'echo "domain: ${domain}"'
                       sh 'echo "cores: ${cores}"'
                       sh 'echo "memory: ${memory}"'
@@ -39,7 +39,7 @@ pipeline {
             steps{
                 script{
                     sh 'terraform init'
-                    sh 'echo ${hostname}'
+                    sh 'echo ${vhostname}'
                 }
             }
         }
