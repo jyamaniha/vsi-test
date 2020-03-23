@@ -13,7 +13,7 @@ resource "ibm_compute_vm_instance" "vm1" {
   private_network_only = true
   cores                = "${var.cores}"
   memory               = "${var.memory}"
-  disks                =  100
+  disks                = 100
   local_disk           = false
 
   private_subnet = "${var.private_subnet}"
