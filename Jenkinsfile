@@ -12,7 +12,7 @@ def verify() {
 def deployVM(cliente){
     stage('Initial Setups VM'){
         withCredentials([usernamePassword(credentialsId: 'ibmcloud-"${cliente}"', passwordVariable: 'pass', usernameVariable: 'user')]) {
-            sh 'terraform apply -var iaas_classic_username="${user}" ibmcloud_iaas_api_key="${pass}" -var hostname="${hostname}" -var domain="${domain}" -var cores=${cores} -var memory=${memory} -var private_subnet=${subnet_privada} -auto-approve'
+            sh 'terraform apply -var iaas_classic_username="${user}" ibmcloud_iaas_api_key="${pass}" -var hostname="${hostname}" -var domain="${domain}" -var cores="${cores}" -var memory="${memory}" -var private_subnet="${subnet_privada}" -auto-approve'
         }
     }
 }
